@@ -1,0 +1,1 @@
+Because the application is designed to use MongoDB atlas in the cloud, Mongo is not ran in Docker. However this would be easy to implement if required.
