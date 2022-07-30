@@ -3,20 +3,18 @@ services:
     image: bloglist-backend
     build:
       context: ./backend/
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./backend/:/usr/src/app
-    container_name: bloglist-backend-dev
+    container_name: bloglist-backend
   app:
     image: bloglist-frontend
-    environment:
-      - REACT_APP_BACKEND_URL=http://localhost:8080/api/
     build:
       context: ./frontend/
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./frontend/:/usr/src/app
-    container_name: bloglist-frontend-dev
+    container_name: bloglist-frontend
     depends_on:
       - backend
   nginx:
@@ -25,8 +23,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - 8080:80
-    container_name: bloglist-reverse-proxy-dev
+    container_name: bloglist-reverse-proxy
     depends_on:
       - app
-  debug-helper:
-    image: busybox
